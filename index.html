@@ -1,0 +1,1991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="NexaFlow AI — The next-generation data automation platform. Orchestrate intelligent pipelines, transform raw data into decisions, and scale autonomously." />
+  <meta name="keywords" content="AI automation, data pipeline, machine learning, intelligent orchestration, data platform" />
+  <meta name="author" content="NexaFlow AI" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="NexaFlow AI — Intelligent Data Automation" />
+  <meta property="og:description" content="Orchestrate intelligent pipelines. Transform raw data into real-time decisions. Scale autonomously with zero ops overhead." />
+  <meta property="og:url" content="https://nexaflow.ai" />
+  <meta property="og:image" content="https://nexaflow.ai/og-image.png" />
+  <meta property="og:site_name" content="NexaFlow AI" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="NexaFlow AI — Intelligent Data Automation" />
+  <meta name="twitter:description" content="Orchestrate intelligent pipelines. Transform raw data into real-time decisions." />
+  <meta name="twitter:image" content="https://nexaflow.ai/og-image.png" />
+
+  <title>NexaFlow AI — Intelligent Data Automation Platform</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+/* ============================================================
+   NexaFlow AI — Landing Page Styles
+   Colors: Arctic Powder #F1F6F4, Forsythia #FFC801,
+           Nocturnal Expedition #114C5A, Mystic Mint #D9E8E2,
+           Deep Saffron #FF9932, Oceanic Noir #172B36
+   Fonts: JetBrains Mono (headers/code), Inter (body/UI)
+   ============================================================ */
+
+/* ---- TOKENS ---- */
+:root {
+  --arctic:    #F1F6F4;
+  --forsythia: #FFC801;
+  --nocturnal: #114C5A;
+  --mystic:    #D9E8E2;
+  --saffron:   #FF9932;
+  --noir:      #172B36;
+
+  --bg:        var(--noir);
+  --surface:   #1f3540;
+  --surface-2: #243d4a;
+  --border:    rgba(209,232,226,0.1);
+  --text-hi:   var(--arctic);
+  --text-mid:  #8ab4c0;
+  --text-lo:   #5d8a96;
+  --accent:    var(--forsythia);
+  --accent-2:  var(--saffron);
+
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-sans: 'Inter', sans-serif;
+
+  --r-sm: 8px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --r-xl: 28px;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* ---- RESET ---- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text-hi);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+img, svg { display: block; max-width: 100%; }
+ul { list-style: none; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+/* Screen-reader only */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+/* ---- LOADER ---- */
+#page-loader {
+  position: fixed; inset: 0; z-index: 9999;
+  background: var(--noir);
+  display: flex; align-items: center; justify-content: center;
+  transition: opacity 0.3s var(--ease-out), visibility 0.3s var(--ease-out);
+}
+#page-loader.hidden {
+  opacity: 0; visibility: hidden; pointer-events: none;
+}
+.loader-inner { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+.loader-logo {
+  font-family: var(--font-mono);
+  font-size: 2rem; font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+}
+.loader-bar {
+  width: 180px; height: 3px;
+  background: var(--surface-2);
+  border-radius: 999px; overflow: hidden;
+}
+.loader-bar-fill {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--forsythia), var(--saffron));
+  border-radius: 999px;
+  animation: loader-fill 420ms var(--ease-out) forwards;
+}
+@keyframes loader-fill {
+  to { width: 100%; }
+}
+
+/* ---- CONTAINER ---- */
+.container {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---- HEADER ---- */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(23,43,54,0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  display: flex; align-items: center;
+  max-width: 1160px; margin: 0 auto;
+  padding: 0 24px; height: 64px; gap: 32px;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  flex-shrink: 0;
+  transition: opacity 150ms var(--ease-out);
+}
+.nav-logo:hover { opacity: 0.8; }
+.nav-logo-icon {
+  width: 28px; height: 28px;
+  color: var(--accent);
+}
+.nav-logo-text {
+  font-family: var(--font-mono);
+  font-weight: 700; font-size: 1.1rem;
+  color: var(--text-hi);
+}
+.nav-links {
+  display: flex; align-items: center; gap: 8px;
+  margin-left: auto;
+}
+.nav-link {
+  font-size: 0.875rem; font-weight: 500;
+  color: var(--text-mid);
+  padding: 6px 12px; border-radius: var(--r-sm);
+  transition: color 150ms var(--ease-out), background 150ms var(--ease-out);
+}
+.nav-link:hover { color: var(--text-hi); background: var(--surface); }
+.nav-actions { display: flex; align-items: center; gap: 8px; }
+.btn-ghost {
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: var(--r-sm);
+  color: var(--text-mid);
+  transition: color 150ms var(--ease-out), background 150ms var(--ease-out);
+}
+.btn-ghost:hover { color: var(--text-hi); background: var(--surface); }
+
+.nav-hamburger {
+  display: none; flex-direction: column;
+  gap: 5px; padding: 6px; border-radius: var(--r-sm);
+  color: var(--text-mid);
+}
+.nav-hamburger span {
+  display: block; width: 22px; height: 2px;
+  background: currentColor; border-radius: 2px;
+  transition: transform 300ms var(--ease-in-out), opacity 200ms;
+}
+.nav-hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.mobile-menu {
+  display: none;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 16px 24px 24px;
+  animation: slideDown 300ms var(--ease-out);
+}
+.mobile-menu:not([hidden]) { display: block; }
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.mobile-nav-link {
+  display: block; padding: 12px 0;
+  font-size: 1rem; font-weight: 500;
+  color: var(--text-mid);
+  border-bottom: 1px solid var(--border);
+  transition: color 150ms var(--ease-out);
+}
+.mobile-nav-link:hover { color: var(--text-hi); }
+.mobile-cta { display: block; margin-top: 16px; text-align: center; }
+
+/* ---- BUTTONS ---- */
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--forsythia);
+  color: var(--noir);
+  font-weight: 700; font-size: 0.875rem;
+  padding: 10px 20px; border-radius: var(--r-sm);
+  transition: background 150ms var(--ease-out), transform 150ms var(--ease-out), box-shadow 150ms var(--ease-out);
+  white-space: nowrap;
+}
+.btn-primary:hover {
+  background: #ffd64a;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(255,200,1,0.3);
+}
+.btn-primary:active { transform: translateY(0); }
+
+.btn-outline {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1.5px solid var(--border);
+  color: var(--text-hi);
+  font-weight: 600; font-size: 0.875rem;
+  padding: 10px 20px; border-radius: var(--r-sm);
+  transition: border-color 150ms var(--ease-out), background 150ms var(--ease-out);
+}
+.btn-outline:hover {
+  border-color: var(--accent);
+  background: rgba(255,200,1,0.06);
+}
+
+.btn-large { padding: 14px 28px; font-size: 1rem; }
+
+.btn-ghost-light {
+  display: inline-flex; align-items: center; gap: 8px;
+  color: var(--nocturnal);
+  font-weight: 600; font-size: 0.875rem;
+  padding: 10px 20px; border-radius: var(--r-sm);
+  transition: background 150ms var(--ease-out);
+}
+.btn-ghost-light:hover { background: rgba(17,76,90,0.15); }
+
+.nav-cta { padding: 8px 18px; font-size: 0.85rem; }
+
+/* ---- HERO ---- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 96px 0 80px;
+}
+.hero-bg-grid {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(209,232,226,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(209,232,226,0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.hero-bg-glow {
+  position: absolute; top: -200px; left: 50%;
+  transform: translateX(-50%);
+  width: 900px; height: 600px;
+  background: radial-gradient(ellipse at center, rgba(255,200,1,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero .container { position: relative; text-align: center; }
+
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500;
+  color: var(--accent);
+  background: rgba(255,200,1,0.08);
+  border: 1px solid rgba(255,200,1,0.2);
+  padding: 6px 14px; border-radius: 999px;
+  margin-bottom: 28px;
+  animation: fadeUp 400ms var(--ease-out) both;
+}
+.eyebrow-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+
+.hero-headline {
+  font-family: var(--font-mono);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text-hi);
+  margin-bottom: 24px;
+  animation: fadeUp 400ms 60ms var(--ease-out) both;
+}
+.headline-accent {
+  background: linear-gradient(135deg, var(--forsythia) 0%, var(--saffron) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-subline {
+  max-width: 560px; margin: 0 auto 40px;
+  font-size: 1.1rem; color: var(--text-mid); line-height: 1.7;
+  animation: fadeUp 400ms 120ms var(--ease-out) both;
+}
+.hero-cta-group {
+  display: flex; align-items: center; justify-content: center;
+  gap: 14px; flex-wrap: wrap;
+  margin-bottom: 56px;
+  animation: fadeUp 400ms 180ms var(--ease-out) both;
+}
+.hero-stats {
+  display: flex; align-items: center; justify-content: center;
+  gap: 0; flex-wrap: wrap;
+  margin-bottom: 64px;
+  animation: fadeUp 400ms 240ms var(--ease-out) both;
+}
+.stat-item { padding: 0 32px; text-align: center; }
+.stat-value {
+  display: block;
+  font-family: var(--font-mono); font-size: 1.5rem; font-weight: 700;
+  color: var(--text-hi);
+}
+.stat-label { font-size: 0.8rem; color: var(--text-lo); }
+.stat-divider { width: 1px; height: 36px; background: var(--border); }
+
+/* Dashboard mock */
+.hero-dashboard {
+  display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+  animation: fadeUp 400ms 300ms var(--ease-out) both;
+}
+.dashboard-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 20px;
+  width: 360px;
+  text-align: left;
+}
+.card-sm { width: 220px; display: flex; flex-direction: column; gap: 12px; justify-content: center; }
+.dashboard-header {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 20px;
+}
+.dashboard-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+}
+.dashboard-dot.green { background: #34d399; }
+.dashboard-dot.yellow { background: var(--forsythia); }
+.dashboard-dot.red { background: #f87171; }
+.dashboard-title {
+  font-family: var(--font-mono); font-size: 0.75rem;
+  color: var(--text-lo); margin-left: 4px;
+}
+.pipeline-row {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 12px;
+}
+.pipeline-label { font-size: 0.75rem; color: var(--text-mid); width: 72px; flex-shrink: 0; }
+.pipeline-bar {
+  flex: 1; height: 6px; background: var(--surface-2);
+  border-radius: 999px; overflow: hidden;
+}
+.pipeline-fill {
+  height: 100%; width: var(--w);
+  background: linear-gradient(90deg, var(--forsythia), var(--saffron));
+  border-radius: 999px;
+  animation: barFill 600ms 350ms var(--ease-out) both;
+}
+@keyframes barFill {
+  from { width: 0; }
+  to   { width: var(--w); }
+}
+.pipeline-pct { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-lo); width: 30px; text-align: right; }
+.metric-badge {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md); padding: 12px;
+  color: var(--accent);
+}
+.metric-value { display: block; font-family: var(--font-mono); font-size: 0.95rem; font-weight: 700; color: var(--text-hi); }
+.metric-sub { font-size: 0.7rem; color: var(--text-lo); }
+
+/* ---- LOGOS ---- */
+.logos-section { padding: 40px 0; border-top: 1px solid var(--border); }
+.logos-label {
+  text-align: center; font-size: 0.8rem;
+  color: var(--text-lo); margin-bottom: 20px;
+  text-transform: uppercase; letter-spacing: 0.08em;
+}
+.logos-track { overflow: hidden; }
+.logos-inner {
+  display: flex; gap: 48px; align-items: center;
+  width: max-content;
+  animation: ticker 22s linear infinite;
+}
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.logo-name {
+  font-family: var(--font-mono); font-size: 0.85rem; font-weight: 600;
+  color: var(--text-lo); white-space: nowrap;
+  transition: color 150ms var(--ease-out);
+}
+.logo-name:hover { color: var(--text-mid); }
+
+/* ---- SECTION COMMONS ---- */
+.section-header { text-align: center; margin-bottom: 64px; }
+.section-eyebrow {
+  display: inline-block;
+  font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500;
+  color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.section-heading {
+  font-family: var(--font-mono);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 700; line-height: 1.2;
+  color: var(--text-hi); letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+.section-sub {
+  font-size: 1rem; color: var(--text-mid);
+  max-width: 520px; margin: 0 auto;
+}
+
+/* ---- FEATURES ---- */
+.features-section { padding: 96px 0; }
+
+/* BENTO GRID */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto;
+  gap: 16px;
+}
+.bento-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 28px;
+  cursor: pointer;
+  transition: border-color 200ms var(--ease-out), transform 200ms var(--ease-out), box-shadow 200ms var(--ease-out);
+  position: relative; overflow: hidden;
+}
+.bento-card::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,200,1,0.04) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 200ms var(--ease-out);
+  pointer-events: none;
+}
+.bento-card:hover { border-color: rgba(255,200,1,0.3); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,0,0,0.2); }
+.bento-card:hover::before { opacity: 1; }
+.bento-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.bento-card.active { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), 0 12px 40px rgba(255,200,1,0.12); }
+
+.bento-wide { grid-column: span 2; }
+.bento-tall { grid-row: span 2; }
+
+.bento-icon {
+  width: 48px; height: 48px;
+  background: rgba(255,200,1,0.1);
+  border: 1px solid rgba(255,200,1,0.2);
+  border-radius: var(--r-sm);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--accent); margin-bottom: 16px;
+}
+.bento-title {
+  font-family: var(--font-mono); font-size: 1rem; font-weight: 600;
+  color: var(--text-hi); margin-bottom: 10px;
+}
+.bento-desc { font-size: 0.875rem; color: var(--text-mid); line-height: 1.65; }
+.bento-tag {
+  display: inline-block; margin-top: 16px;
+  font-family: var(--font-mono); font-size: 0.68rem;
+  color: var(--accent); background: rgba(255,200,1,0.08);
+  border: 1px solid rgba(255,200,1,0.15);
+  padding: 3px 10px; border-radius: 999px;
+}
+.bento-visual-chart {
+  display: flex; align-items: flex-end;
+  gap: 5px; margin-top: 24px; height: 60px;
+}
+.bento-visual-chart span {
+  flex: 1; height: var(--h);
+  background: linear-gradient(to top, var(--forsythia), var(--saffron));
+  border-radius: 3px 3px 0 0; opacity: 0.7;
+  transition: height 300ms var(--ease-in-out);
+}
+.bento-card:hover .bento-visual-chart span { opacity: 1; }
+
+/* ACCORDION (hidden on desktop) */
+.accordion-list { display: none; }
+
+.accordion-item {
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  margin-bottom: 8px;
+  transition: border-color 200ms var(--ease-out);
+}
+.accordion-item.active { border-color: var(--accent); }
+
+.accordion-trigger {
+  display: flex; align-items: center; gap: 12px;
+  width: 100%; padding: 18px 20px;
+  font-size: 0.95rem; font-weight: 600;
+  color: var(--text-hi); text-align: left;
+  background: var(--surface);
+  transition: background 150ms var(--ease-out);
+}
+.accordion-trigger:hover { background: var(--surface-2); }
+.accordion-icon-wrap {
+  width: 36px; height: 36px;
+  border-radius: var(--r-sm);
+  background: rgba(255,200,1,0.1);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--accent); flex-shrink: 0;
+}
+.accordion-chevron {
+  margin-left: auto; color: var(--text-lo);
+  transition: transform 300ms var(--ease-in-out);
+  flex-shrink: 0;
+}
+.accordion-trigger[aria-expanded="true"] .accordion-chevron { transform: rotate(180deg); }
+
+.accordion-panel {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 350ms var(--ease-in-out);
+}
+.accordion-panel:not([hidden]) {
+  max-height: 200px;
+}
+.accordion-panel[hidden] {
+  display: block !important;
+  max-height: 0;
+}
+.accordion-panel p {
+  padding: 0 20px 20px;
+  font-size: 0.875rem; color: var(--text-mid); line-height: 1.65;
+  background: var(--surface);
+}
+
+/* ---- SOCIAL PROOF ---- */
+.social-section {
+  padding: 96px 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(17,76,90,0.08) 100%);
+}
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.testimonial-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 28px;
+  transition: transform 200ms var(--ease-out), box-shadow 200ms var(--ease-out);
+}
+.testimonial-card:hover { transform: translateY(-3px); box-shadow: 0 16px 48px rgba(0,0,0,0.25); }
+.testimonial-featured {
+  background: linear-gradient(135deg, var(--nocturnal) 0%, #1a5f76 100%);
+  border-color: rgba(255,200,1,0.25);
+}
+.testimonial-quote {
+  font-size: 0.925rem; color: var(--text-mid); line-height: 1.7;
+  margin-bottom: 24px;
+  font-style: italic;
+}
+.testimonial-featured .testimonial-quote { color: var(--mystic); }
+.testimonial-author { display: flex; align-items: center; gap: 12px; }
+.author-avatar {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--forsythia), var(--saffron));
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700;
+  color: var(--noir); flex-shrink: 0;
+}
+.author-name { display: block; font-weight: 600; font-size: 0.875rem; color: var(--text-hi); }
+.author-role { font-size: 0.75rem; color: var(--text-lo); }
+
+/* ---- PRICING ---- */
+.pricing-section { padding: 96px 0; }
+
+.pricing-controls {
+  display: flex; align-items: center; justify-content: center;
+  gap: 16px; margin-bottom: 56px; flex-wrap: wrap;
+}
+
+/* Billing toggle */
+.billing-toggle {
+  display: flex; align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm); padding: 4px; gap: 4px;
+}
+.toggle-btn {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 18px;
+  font-size: 0.875rem; font-weight: 600;
+  color: var(--text-mid);
+  border-radius: 6px;
+  transition: background 150ms var(--ease-out), color 150ms var(--ease-out);
+}
+.toggle-btn.active {
+  background: var(--surface-2); color: var(--text-hi);
+}
+.toggle-btn:hover:not(.active) { color: var(--text-hi); }
+.discount-badge {
+  font-size: 0.65rem; font-weight: 700;
+  background: var(--forsythia); color: var(--noir);
+  padding: 2px 6px; border-radius: 4px;
+}
+
+/* Currency dropdown */
+.currency-dropdown { position: relative; }
+.currency-trigger {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm); padding: 8px 14px;
+  font-size: 0.875rem; font-weight: 600; color: var(--text-hi);
+  transition: border-color 150ms var(--ease-out);
+}
+.currency-trigger:hover { border-color: var(--accent); }
+.currency-trigger[aria-expanded="true"] { border-color: var(--accent); }
+.currency-chevron {
+  transition: transform 200ms var(--ease-out);
+  color: var(--text-lo);
+}
+.currency-trigger[aria-expanded="true"] .currency-chevron { transform: rotate(180deg); }
+.currency-menu {
+  position: absolute; top: calc(100% + 8px); right: 0;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  min-width: 180px; overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+  animation: dropIn 200ms var(--ease-out);
+  z-index: 50;
+}
+.currency-menu:not([hidden]) { display: block; }
+@keyframes dropIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.currency-menu li {
+  padding: 12px 16px;
+  font-size: 0.875rem; color: var(--text-mid);
+  cursor: pointer;
+  transition: background 150ms var(--ease-out), color 150ms var(--ease-out);
+}
+.currency-menu li:hover { background: var(--surface); color: var(--text-hi); }
+.currency-menu li[aria-selected="true"] { color: var(--accent); background: rgba(255,200,1,0.06); }
+
+/* Pricing grid */
+.pricing-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 20px; align-items: stretch;
+}
+.pricing-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: 32px;
+  display: flex; flex-direction: column; gap: 8px;
+  transition: transform 200ms var(--ease-out), box-shadow 200ms var(--ease-out);
+  position: relative; overflow: hidden;
+}
+.pricing-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.25); }
+.pricing-featured {
+  background: linear-gradient(160deg, var(--nocturnal) 0%, #0f3d4a 100%);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px rgba(255,200,1,0.2), 0 24px 64px rgba(255,200,1,0.08);
+}
+.plan-popular-label {
+  position: absolute; top: 20px; right: 20px;
+  font-family: var(--font-mono); font-size: 0.65rem; font-weight: 700;
+  background: var(--forsythia); color: var(--noir);
+  padding: 4px 10px; border-radius: 999px;
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+.plan-header {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 8px;
+}
+.plan-name {
+  font-family: var(--font-mono); font-size: 1rem; font-weight: 700;
+  color: var(--text-hi);
+}
+.plan-badge {
+  font-size: 0.68rem; color: var(--text-lo);
+  background: var(--surface-2); border: 1px solid var(--border);
+  padding: 3px 8px; border-radius: 999px;
+}
+.plan-price-wrap {
+  display: flex; align-items: baseline; gap: 2px;
+  margin: 8px 0 4px;
+}
+.plan-currency-symbol {
+  font-family: var(--font-mono); font-size: 1.4rem; font-weight: 700;
+  color: var(--text-hi); margin-right: 2px;
+}
+.plan-price {
+  font-family: var(--font-mono); font-size: 2.8rem; font-weight: 700;
+  color: var(--text-hi); line-height: 1; letter-spacing: -0.04em;
+  transition: none; /* price updates must NOT reflow layout */
+}
+.plan-period { font-size: 0.85rem; color: var(--text-lo); margin-left: 2px; }
+.plan-desc { font-size: 0.85rem; color: var(--text-mid); line-height: 1.6; margin: 8px 0 16px; }
+.plan-features {
+  flex: 1; display: flex; flex-direction: column; gap: 8px;
+  margin-bottom: 24px;
+}
+.plan-features li {
+  font-size: 0.875rem; color: var(--text-mid);
+  padding-left: 20px; position: relative;
+}
+.plan-features li::before {
+  content: '✓';
+  position: absolute; left: 0;
+  color: var(--accent); font-weight: 700;
+}
+.plan-features li.feature-disabled { color: var(--text-lo); }
+.plan-features li.feature-disabled::before { content: '–'; color: var(--text-lo); }
+.plan-cta { margin-top: auto; text-align: center; justify-content: center; }
+
+/* ---- FAQ ---- */
+.faq-section { padding: 80px 0; }
+.faq-grid {
+  max-width: 720px; margin: 0 auto;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.faq-item {
+  border: 1px solid var(--border);
+  border-radius: var(--r-md); overflow: hidden;
+}
+.faq-trigger {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; padding: 18px 20px;
+  font-size: 0.95rem; font-weight: 600;
+  color: var(--text-hi); text-align: left;
+  background: var(--surface);
+  gap: 12px;
+  transition: background 150ms var(--ease-out);
+}
+.faq-trigger:hover { background: var(--surface-2); }
+.faq-chevron {
+  flex-shrink: 0; color: var(--text-lo);
+  transition: transform 300ms var(--ease-in-out);
+}
+.faq-trigger[aria-expanded="true"] .faq-chevron { transform: rotate(180deg); }
+.faq-panel {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 350ms var(--ease-in-out);
+}
+.faq-panel:not([hidden]) { max-height: 200px; }
+.faq-panel[hidden] { display: block !important; max-height: 0; }
+.faq-panel p {
+  padding: 4px 20px 20px;
+  font-size: 0.875rem; color: var(--text-mid); line-height: 1.7;
+  background: var(--surface);
+}
+
+/* ---- CTA BANNER ---- */
+.cta-banner {
+  padding: 80px 0;
+  background: linear-gradient(135deg, var(--forsythia) 0%, var(--saffron) 100%);
+}
+.cta-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 32px;
+}
+.cta-heading {
+  font-family: var(--font-mono);
+  font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 700;
+  color: var(--noir); line-height: 1.15; letter-spacing: -0.02em;
+}
+.cta-sub { font-size: 1rem; color: rgba(23,43,54,0.75); margin-top: 8px; }
+.cta-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.cta-banner .btn-primary {
+  background: var(--noir); color: var(--forsythia);
+}
+.cta-banner .btn-primary:hover { background: #0d2229; box-shadow: 0 6px 24px rgba(23,43,54,0.3); }
+
+/* ---- FOOTER ---- */
+.site-footer {
+  padding: 64px 0 32px;
+  border-top: 1px solid var(--border);
+}
+.footer-grid {
+  display: grid; grid-template-columns: 280px 1fr;
+  gap: 64px; margin-bottom: 48px;
+}
+.footer-logo { margin-bottom: 12px; }
+.footer-tagline { font-size: 0.85rem; color: var(--text-lo); line-height: 1.6; }
+.footer-nav { display: flex; gap: 48px; flex-wrap: wrap; }
+.footer-col h3.footer-col-title {
+  font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700;
+  color: var(--text-hi); text-transform: uppercase; letter-spacing: 0.08em;
+  margin-bottom: 16px;
+}
+.footer-col ul { display: flex; flex-direction: column; gap: 10px; }
+.footer-col li a {
+  font-size: 0.875rem; color: var(--text-lo);
+  transition: color 150ms var(--ease-out);
+}
+.footer-col li a:hover { color: var(--text-hi); }
+.footer-bottom {
+  display: flex; align-items: center; justify-content: space-between;
+  border-top: 1px solid var(--border); padding-top: 24px; flex-wrap: wrap; gap: 8px;
+  font-size: 0.8rem; color: var(--text-lo);
+}
+
+/* ---- ANIMATIONS ---- */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 400ms var(--ease-out), transform 400ms var(--ease-out);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 960px) {
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .testimonial-card { width: 100%; }
+
+  .pricing-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+
+  .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+  .footer-nav { gap: 32px; }
+}
+
+@media (max-width: 768px) {
+  .nav-links, .nav-actions { display: none; }
+  .nav-hamburger { display: flex; }
+
+  .hero { padding: 72px 0 56px; }
+  .hero-dashboard { flex-direction: column; align-items: center; }
+  .dashboard-card { width: 100%; max-width: 360px; }
+  .card-sm { flex-direction: row; width: 100%; max-width: 360px; }
+
+  /* Bento → Accordion switch */
+  .bento-grid { display: none; }
+  .accordion-list { display: flex; flex-direction: column; }
+
+  .features-section { padding: 64px 0; }
+  .social-section { padding: 64px 0; }
+  .pricing-section { padding: 64px 0; }
+
+  .stat-item { padding: 0 16px; }
+  .stat-value { font-size: 1.2rem; }
+
+  .cta-inner { flex-direction: column; text-align: center; }
+  .cta-actions { justify-content: center; }
+
+  .footer-nav { flex-direction: column; gap: 24px; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+}
+
+@media (max-width: 480px) {
+  .hero-cta-group { flex-direction: column; width: 100%; }
+  .hero-cta-group .btn-primary,
+  .hero-cta-group .btn-outline { width: 100%; justify-content: center; }
+  .hero-stats { gap: 16px; }
+  .stat-divider { display: none; }
+  .pricing-controls { flex-direction: column; }
+}
+
+/* ---- REDUCED MOTION ---- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 1ms !important; transition-duration: 1ms !important; }
+  .logos-inner { animation: none; }
+}
+
+</style>
+</head>
+<body>
+
+  <!-- ===== LOADER ===== -->
+  <div id="page-loader" role="status" aria-label="Loading NexaFlow AI">
+    <div class="loader-inner">
+      <span class="loader-logo">NF</span>
+      <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+    </div>
+  </div>
+
+  <!-- ===== HEADER / NAV ===== -->
+  <header class="site-header" role="banner">
+    <nav class="nav-inner" aria-label="Primary navigation">
+      <a href="/" class="nav-logo" aria-label="NexaFlow AI Home">
+        <svg class="nav-logo-icon" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path fill="currentColor" d="M8.372 1.349a.75.75 0 0 0-.744 0l-4.81 2.748L8 7.131l5.182-3.034zM14 5.357L8.75 8.43v6.005l4.872-2.784A.75.75 0 0 0 14 11zm-6.75 9.078V8.43L2 5.357V11c0 .27.144.518.378.651z"/>
+        </svg>
+        <span class="nav-logo-text">NexaFlow</span>
+      </a>
+
+      <ul class="nav-links" role="list">
+        <li><a href="#features" class="nav-link">Features</a></li>
+        <li><a href="#pricing" class="nav-link">Pricing</a></li>
+        <li><a href="#social-proof" class="nav-link">Customers</a></li>
+        <li><a href="#faq" class="nav-link">FAQ</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="btn-ghost" aria-label="Search">
+          <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="18" height="18">
+            <path fill="currentColor" d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33l-1.42 1.42l-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/>
+          </svg>
+        </button>
+        <a href="#pricing" class="btn-primary nav-cta">Get Started</a>
+      </div>
+
+      <button class="nav-hamburger" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <div id="mobile-menu" class="mobile-menu" role="dialog" aria-label="Mobile navigation" hidden>
+      <ul role="list">
+        <li><a href="#features" class="mobile-nav-link">Features</a></li>
+        <li><a href="#pricing" class="mobile-nav-link">Pricing</a></li>
+        <li><a href="#social-proof" class="mobile-nav-link">Customers</a></li>
+        <li><a href="#faq" class="mobile-nav-link">FAQ</a></li>
+        <li><a href="#pricing" class="btn-primary mobile-cta">Get Started</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" aria-labelledby="hero-headline">
+      <div class="hero-bg-grid" aria-hidden="true"></div>
+      <div class="hero-bg-glow" aria-hidden="true"></div>
+
+      <div class="container">
+        <div class="hero-eyebrow">
+          <span class="eyebrow-dot" aria-hidden="true"></span>
+          <span>AI-Powered Automation Platform</span>
+        </div>
+
+        <h1 id="hero-headline" class="hero-headline">
+          Data that acts.<br />
+          <span class="headline-accent">Before you ask.</span>
+        </h1>
+
+        <p class="hero-subline">
+          Orchestrate intelligent pipelines, transform raw signals into real-time decisions,
+          and scale every workflow autonomously — with zero ops overhead.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#pricing" class="btn-primary btn-large">
+            Start for free
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="18" height="18">
+              <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m8.25 4.5l7.5 7.5l-7.5 7.5"/>
+            </svg>
+          </a>
+          <a href="#features" class="btn-outline btn-large">
+            See how it works
+          </a>
+        </div>
+
+        <div class="hero-stats" role="list" aria-label="Platform statistics">
+          <div class="stat-item" role="listitem">
+            <span class="stat-value">99.97%</span>
+            <span class="stat-label">Uptime SLA</span>
+          </div>
+          <div class="stat-divider" aria-hidden="true"></div>
+          <div class="stat-item" role="listitem">
+            <span class="stat-value">2.4ms</span>
+            <span class="stat-label">Avg latency</span>
+          </div>
+          <div class="stat-divider" aria-hidden="true"></div>
+          <div class="stat-item" role="listitem">
+            <span class="stat-value">10B+</span>
+            <span class="stat-label">Events/month</span>
+          </div>
+        </div>
+
+        <figure class="hero-dashboard" aria-label="NexaFlow dashboard preview">
+          <div class="dashboard-card">
+            <div class="dashboard-header">
+              <span class="dashboard-dot green"></span>
+              <span class="dashboard-dot yellow"></span>
+              <span class="dashboard-dot red"></span>
+              <span class="dashboard-title">Pipeline Monitor</span>
+            </div>
+            <div class="dashboard-body">
+              <div class="pipeline-row">
+                <span class="pipeline-label">Ingestion</span>
+                <div class="pipeline-bar"><div class="pipeline-fill" style="--w:92%"></div></div>
+                <span class="pipeline-pct">92%</span>
+              </div>
+              <div class="pipeline-row">
+                <span class="pipeline-label">Transform</span>
+                <div class="pipeline-bar"><div class="pipeline-fill" style="--w:78%"></div></div>
+                <span class="pipeline-pct">78%</span>
+              </div>
+              <div class="pipeline-row">
+                <span class="pipeline-label">Enrich</span>
+                <div class="pipeline-bar"><div class="pipeline-fill" style="--w:65%"></div></div>
+                <span class="pipeline-pct">65%</span>
+              </div>
+              <div class="pipeline-row">
+                <span class="pipeline-label">Output</span>
+                <div class="pipeline-bar"><div class="pipeline-fill" style="--w:88%"></div></div>
+                <span class="pipeline-pct">88%</span>
+              </div>
+            </div>
+          </div>
+          <div class="dashboard-card card-sm">
+            <div class="metric-badge">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="20" height="20">
+                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 0 1 5.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941"/>
+              </svg>
+              <div>
+                <span class="metric-value">↑ 43%</span>
+                <span class="metric-sub">throughput this week</span>
+              </div>
+            </div>
+            <div class="metric-badge">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="20" height="20">
+                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
+                  <path d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z"/>
+                  <path d="M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z"/>
+                </g>
+              </svg>
+              <div>
+                <span class="metric-value">97.2%</span>
+                <span class="metric-sub">model accuracy</span>
+              </div>
+            </div>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===== LOGOS ===== -->
+    <section class="logos-section" aria-label="Trusted by leading companies">
+      <div class="container">
+        <p class="logos-label">Trusted by engineering teams at</p>
+        <div class="logos-track" aria-hidden="true">
+          <div class="logos-inner">
+            <span class="logo-name">Acme Corp</span>
+            <span class="logo-name">Brightpath</span>
+            <span class="logo-name">Orion</span>
+            <span class="logo-name">Pinnacle</span>
+            <span class="logo-name">Crestline</span>
+            <span class="logo-name">Wavefront</span>
+            <span class="logo-name">Tessera</span>
+            <span class="logo-name">Acme Corp</span>
+            <span class="logo-name">Brightpath</span>
+            <span class="logo-name">Orion</span>
+            <span class="logo-name">Pinnacle</span>
+            <span class="logo-name">Crestline</span>
+            <span class="logo-name">Wavefront</span>
+            <span class="logo-name">Tessera</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FEATURES — BENTO / ACCORDION ===== -->
+    <section id="features" class="features-section" aria-labelledby="features-heading">
+      <div class="container">
+        <header class="section-header">
+          <p class="section-eyebrow">Core capabilities</p>
+          <h2 id="features-heading" class="section-heading">The full automation stack,<br />wired together.</h2>
+          <p class="section-sub">Every layer of your data pipeline — from ingestion to insight — orchestrated by a single intelligent system.</p>
+        </header>
+
+        <!-- BENTO GRID (desktop) -->
+        <div id="bento-grid" class="bento-grid" role="list" aria-label="Feature highlights">
+
+          <article class="bento-card bento-wide" data-index="0" role="listitem" tabindex="0" aria-label="Autonomous Pipeline Engine">
+            <div class="bento-icon">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="28" height="28">
+                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99"/>
+              </svg>
+            </div>
+            <h3 class="bento-title">Autonomous Pipeline Engine</h3>
+            <p class="bento-desc">Self-healing data flows that detect schema drift, reroute on failure, and adapt to volume spikes — without a single config change from your team.</p>
+            <div class="bento-tag">Core Engine</div>
+          </article>
+
+          <article class="bento-card bento-tall" data-index="1" role="listitem" tabindex="0" aria-label="Real-Time Intelligence">
+            <div class="bento-icon">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="28" height="28">
+                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 0 1 5.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941"/>
+              </svg>
+            </div>
+            <h3 class="bento-title">Real-Time Intelligence</h3>
+            <p class="bento-desc">Sub-3ms event processing with stream analytics built in. Turn sensor data, logs, and user events into actionable signals the moment they arrive.</p>
+            <div class="bento-visual-chart" aria-hidden="true">
+              <span style="--h:40%"></span><span style="--h:65%"></span><span style="--h:45%"></span>
+              <span style="--h:80%"></span><span style="--h:55%"></span><span style="--h:90%"></span>
+              <span style="--h:70%"></span><span style="--h:85%"></span>
+            </div>
+            <div class="bento-tag">Streaming</div>
+          </article>
+
+          <article class="bento-card" data-index="2" role="listitem" tabindex="0" aria-label="Universal Connectors">
+            <div class="bento-icon">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="28" height="28">
+                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"/>
+              </svg>
+            </div>
+            <h3 class="bento-title">Universal Connectors</h3>
+            <p class="bento-desc">300+ prebuilt integrations. Connect any source — databases, SaaS, IoT, queues — in under 60 seconds.</p>
+            <div class="bento-tag">Integrations</div>
+          </article>
+
+          <article class="bento-card" data-index="3" role="listitem" tabindex="0" aria-label="Intelligent Orchestration">
+            <div class="bento-icon">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="28" height="28">
+                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
+                  <path d="M10.343 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93c.398.164.855.142 1.205-.108l.737-.527a1.125 1.125 0 0 1 1.45.12l.773.774c.39.389.44 1.002.12 1.45l-.527.737c-.25.35-.272.806-.107 1.204c.165.397.505.71.93.78l.893.15c.543.09.94.56.94 1.109v1.094c0 .55-.397 1.02-.94 1.11l-.893.149c-.425.07-.765.383-.93.78c-.165.398-.143.854.107 1.204l.527.738c.32.447.269 1.06-.12 1.45l-.774.773a1.125 1.125 0 0 1-1.449.12l-.738-.527c-.35-.25-.806-.272-1.203-.107c-.397.165-.71.505-.781.929l-.149.894c-.09.542-.56.94-1.11.94h-1.094c-.55 0-1.019-.398-1.11-.94l-.148-.894c-.071-.424-.384-.764-.781-.93c-.398-.164-.854-.142-1.204.108l-.738.527c-.447.32-1.06.269-1.45-.12l-.773-.774a1.125 1.125 0 0 1-.12-1.45l.527-.737c.25-.35.273-.806.108-1.204c-.165-.397-.505-.71-.93-.78l-.894-.15c-.542-.09-.94-.56-.94-1.109v-1.094c0-.55.398-1.02.94-1.11l.894-.149c.424-.07.765-.383.93-.78c.165-.398.143-.854-.107-1.204l-.527-.738a1.125 1.125 0 0 1 .12-1.45l.773-.773a1.125 1.125 0 0 1 1.45-.12l.737.527c.35.25.807.272 1.204.107c.397-.165.71-.505.78-.929l.15-.894Z"/>
+                  <path d="M15 12a3 3 0 1 1-6 0a3 3 0 0 1 6 0Z"/>
+                </g>
+              </svg>
+            </div>
+            <h3 class="bento-title">Intelligent Orchestration</h3>
+            <p class="bento-desc">DAG-based workflow engine that auto-schedules, retries, and prioritizes jobs based on downstream dependencies and SLA windows.</p>
+            <div class="bento-tag">Workflows</div>
+          </article>
+
+          <article class="bento-card bento-wide" data-index="4" role="listitem" tabindex="0" aria-label="Analytics & Observability">
+            <div class="bento-icon">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="28" height="28">
+                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
+                  <path d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z"/>
+                  <path d="M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z"/>
+                </g>
+              </svg>
+            </div>
+            <h3 class="bento-title">Analytics & Observability</h3>
+            <p class="bento-desc">Full-lineage dashboards, anomaly detection, and real-time alerting across every pipeline stage. Know what's happening before your stakeholders notice.</p>
+            <div class="bento-tag">Observability</div>
+          </article>
+
+        </div>
+
+        <!-- ACCORDION (mobile) -->
+        <div id="accordion-list" class="accordion-list" role="list" aria-label="Feature highlights">
+
+          <div class="accordion-item" data-index="0" role="listitem">
+            <button class="accordion-trigger" aria-expanded="false" aria-controls="acc-panel-0" id="acc-btn-0">
+              <span class="accordion-icon-wrap">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="20" height="20">
+                  <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99"/>
+                </svg>
+              </span>
+              <span>Autonomous Pipeline Engine</span>
+              <span class="accordion-chevron" aria-hidden="true">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="18" height="18">
+                  <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m19.5 8.25l-7.5 7.5l-7.5-7.5"/>
+                </svg>
+              </span>
+            </button>
+            <div class="accordion-panel" id="acc-panel-0" role="region" aria-labelledby="acc-btn-0" hidden>
+              <p>Self-healing data flows that detect schema drift, reroute on failure, and adapt to volume spikes — without a single config change from your team.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item" data-index="1" role="listitem">
+            <button class="accordion-trigger" aria-expanded="false" aria-controls="acc-panel-1" id="acc-btn-1">
+              <span class="accordion-icon-wrap">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="20" height="20">
+                  <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 0 1 5.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941"/>
+                </svg>
+              </span>
+              <span>Real-Time Intelligence</span>
+              <span class="accordion-chevron" aria-hidden="true">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="18" height="18">
+                  <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m19.5 8.25l-7.5 7.5l-7.5-7.5"/>
+                </svg>
+              </span>
+            </button>
+            <div class="accordion-panel" id="acc-panel-1" role="region" aria-labelledby="acc-btn-1" hidden>
+              <p>Sub-3ms event processing with stream analytics built in. Turn sensor data, logs, and user events into actionable signals the moment they arrive.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item" data-index="2" role="listitem">
+            <button class="accordion-trigger" aria-expanded="false" aria-controls="acc-panel-2" id="acc-btn-2">
+              <span class="accordion-icon-wrap">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="20" height="20">
+                  <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"/>
+                </svg>
+              </span>
+              <span>Universal Connectors</span>
+              <span class="accordion-chevron" aria-hidden="true">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="18" height="18">
+                  <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m19.5 8.25l-7.5 7.5l-7.5-7.5"/>
+                </svg>
+              </span>
+            </button>
+            <div class="accordion-panel" id="acc-panel-2" role="region" aria-labelledby="acc-btn-2" hidden>
+              <p>300+ prebuilt integrations. Connect any source — databases, SaaS, IoT, queues — in under 60 seconds.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item" data-index="3" role="listitem">
+            <button class="accordion-trigger" aria-expanded="false" aria-controls="acc-panel-3" id="acc-btn-3">
+              <span class="accordion-icon-wrap">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="20" height="20">
+                  <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
+                    <path d="M10.343 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93c.398.164.855.142 1.205-.108l.737-.527a1.125 1.125 0 0 1 1.45.12l.773.774c.39.389.44 1.002.12 1.45l-.527.737c-.25.35-.272.806-.107 1.204c.165.397.505.71.93.78l.893.15c.543.09.94.56.94 1.109v1.094c0 .55-.397 1.02-.94 1.11l-.893.149c-.425.07-.765.383-.93.78c-.165.398-.143.854.107 1.204l.527.738c.32.447.269 1.06-.12 1.45l-.774.773a1.125 1.125 0 0 1-1.449.12l-.738-.527c-.35-.25-.806-.272-1.203-.107c-.397.165-.71.505-.781.929l-.149.894c-.09.542-.56.94-1.11.94h-1.094c-.55 0-1.019-.398-1.11-.94l-.148-.894c-.071-.424-.384-.764-.781-.93c-.398-.164-.854-.142-1.204.108l-.738.527c-.447.32-1.06.269-1.45-.12l-.773-.774a1.125 1.125 0 0 1-.12-1.45l.527-.737c.25-.35.273-.806.108-1.204c-.165-.397-.505-.71-.93-.78l-.894-.15c-.542-.09-.94-.56-.94-1.109v-1.094c0-.55.398-1.02.94-1.11l.894-.149c.424-.07.765-.383.93-.78c.165-.398.143-.854-.107-1.204l-.527-.738a1.125 1.125 0 0 1 .12-1.45l.773-.773a1.125 1.125 0 0 1 1.45-.12l.737.527c.35.25.807.272 1.204.107c.397-.165.71-.505.78-.929l.15-.894Z"/>
+                    <path d="M15 12a3 3 0 1 1-6 0a3 3 0 0 1 6 0Z"/>
+                  </g>
+                </svg>
+              </span>
+              <span>Intelligent Orchestration</span>
+              <span class="accordion-chevron" aria-hidden="true">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="18" height="18">
+                  <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m19.5 8.25l-7.5 7.5l-7.5-7.5"/>
+                </svg>
+              </span>
+            </button>
+            <div class="accordion-panel" id="acc-panel-3" role="region" aria-labelledby="acc-btn-3" hidden>
+              <p>DAG-based workflow engine that auto-schedules, retries, and prioritizes jobs based on downstream dependencies and SLA windows.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item" data-index="4" role="listitem">
+            <button class="accordion-trigger" aria-expanded="false" aria-controls="acc-panel-4" id="acc-btn-4">
+              <span class="accordion-icon-wrap">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="20" height="20">
+                  <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
+                    <path d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z"/>
+                    <path d="M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z"/>
+                  </g>
+                </svg>
+              </span>
+              <span>Analytics & Observability</span>
+              <span class="accordion-chevron" aria-hidden="true">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="18" height="18">
+                  <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m19.5 8.25l-7.5 7.5l-7.5-7.5"/>
+                </svg>
+              </span>
+            </button>
+            <div class="accordion-panel" id="acc-panel-4" role="region" aria-labelledby="acc-btn-4" hidden>
+              <p>Full-lineage dashboards, anomaly detection, and real-time alerting across every pipeline stage. Know what's happening before your stakeholders notice.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SOCIAL PROOF ===== -->
+    <section id="social-proof" class="social-section" aria-labelledby="social-heading">
+      <div class="container">
+        <header class="section-header">
+          <p class="section-eyebrow">Testimonials</p>
+          <h2 id="social-heading" class="section-heading">Teams that shipped faster.</h2>
+        </header>
+
+        <div class="testimonials-grid" role="list">
+
+          <blockquote class="testimonial-card" role="listitem">
+            <p class="testimonial-quote">"We cut our data pipeline setup from 3 weeks to 4 hours. NexaFlow's self-healing flows saved us from at least 6 production incidents last quarter."</p>
+            <footer class="testimonial-author">
+              <div class="author-avatar" aria-hidden="true">SM</div>
+              <div>
+                <cite class="author-name">Sarah Mitchell</cite>
+                <span class="author-role">Head of Data Engineering, Acme Corp</span>
+              </div>
+            </footer>
+          </blockquote>
+
+          <blockquote class="testimonial-card testimonial-featured" role="listitem">
+            <p class="testimonial-quote">"The context-aware orchestration is unlike anything we've used. It's not just automation — it thinks ahead. Our ML model freshness went from 24h to 90 seconds."</p>
+            <footer class="testimonial-author">
+              <div class="author-avatar" aria-hidden="true">DT</div>
+              <div>
+                <cite class="author-name">Daniel Torres</cite>
+                <span class="author-role">VP Engineering, Brightpath Inc</span>
+              </div>
+            </footer>
+          </blockquote>
+
+          <blockquote class="testimonial-card" role="listitem">
+            <p class="testimonial-quote">"We process 2 billion events daily. NexaFlow handles it with 99.98% reliability. The pricing model scales with us — no surprise bills."</p>
+            <footer class="testimonial-author">
+              <div class="author-avatar" aria-hidden="true">NK</div>
+              <div>
+                <cite class="author-name">Neha Kapoor</cite>
+                <span class="author-role">CTO, Orion Systems</span>
+              </div>
+            </footer>
+          </blockquote>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PRICING ===== -->
+    <section id="pricing" class="pricing-section" aria-labelledby="pricing-heading">
+      <div class="container">
+        <header class="section-header">
+          <p class="section-eyebrow">Pricing</p>
+          <h2 id="pricing-heading" class="section-heading">Transparent pricing.<br />No surprises.</h2>
+          <p class="section-sub">Start free, scale when you're ready. Annual billing saves 20%.</p>
+        </header>
+
+        <!-- Pricing Controls -->
+        <div class="pricing-controls" role="group" aria-label="Pricing options">
+
+          <div class="billing-toggle" role="group" aria-label="Billing period">
+            <button
+              class="toggle-btn active"
+              id="toggle-monthly"
+              aria-pressed="true"
+              data-cycle="monthly"
+            >Monthly</button>
+            <button
+              class="toggle-btn"
+              id="toggle-annual"
+              aria-pressed="false"
+              data-cycle="annual"
+            >
+              Annual
+              <span class="discount-badge">-20%</span>
+            </button>
+          </div>
+
+          <div class="currency-selector" role="group" aria-label="Currency selection">
+            <label class="sr-only" for="currency-select">Select currency</label>
+            <div class="currency-dropdown" id="currency-dropdown">
+              <button class="currency-trigger" id="currency-trigger" aria-haspopup="listbox" aria-expanded="false" aria-label="Select currency">
+                <span id="currency-flag">🇮🇳</span>
+                <span id="currency-label">INR</span>
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="14" height="14" class="currency-chevron">
+                  <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m19.5 8.25l-7.5 7.5l-7.5-7.5"/>
+                </svg>
+              </button>
+              <ul class="currency-menu" id="currency-menu" role="listbox" aria-label="Currency options" hidden>
+                <li role="option" aria-selected="true" data-currency="INR" data-flag="🇮🇳" tabindex="0">🇮🇳 INR — ₹</li>
+                <li role="option" aria-selected="false" data-currency="USD" data-flag="🇺🇸" tabindex="0">🇺🇸 USD — $</li>
+                <li role="option" aria-selected="false" data-currency="EUR" data-flag="🇪🇺" tabindex="0">🇪🇺 EUR — €</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pricing Cards -->
+        <div class="pricing-grid" role="list" aria-label="Pricing tiers">
+
+          <article class="pricing-card" data-tier="starter" role="listitem" aria-label="Starter plan">
+            <div class="plan-header">
+              <span class="plan-name">Starter</span>
+              <span class="plan-badge">Free forever</span>
+            </div>
+            <div class="plan-price-wrap">
+              <span class="plan-currency-symbol" data-price-symbol></span>
+              <span class="plan-price" data-price-value data-tier="starter">0</span>
+              <span class="plan-period">/mo</span>
+            </div>
+            <p class="plan-desc">Perfect for indie developers and side projects exploring AI automation.</p>
+            <ul class="plan-features" aria-label="Starter plan features">
+              <li>5 active pipelines</li>
+              <li>1M events/month</li>
+              <li>3 connectors</li>
+              <li>Community support</li>
+              <li class="feature-disabled">Advanced analytics</li>
+              <li class="feature-disabled">SLA guarantees</li>
+            </ul>
+            <a href="#" class="btn-outline plan-cta">Get started free</a>
+          </article>
+
+          <article class="pricing-card pricing-featured" data-tier="pro" role="listitem" aria-label="Pro plan — Most popular">
+            <div class="plan-popular-label" aria-label="Most popular plan">Most Popular</div>
+            <div class="plan-header">
+              <span class="plan-name">Pro</span>
+            </div>
+            <div class="plan-price-wrap">
+              <span class="plan-currency-symbol" data-price-symbol></span>
+              <span class="plan-price" data-price-value data-tier="pro">2999</span>
+              <span class="plan-period">/mo</span>
+            </div>
+            <p class="plan-desc">For growing teams running production pipelines with enterprise-grade reliability.</p>
+            <ul class="plan-features" aria-label="Pro plan features">
+              <li>Unlimited pipelines</li>
+              <li>500M events/month</li>
+              <li>150+ connectors</li>
+              <li>Priority email support</li>
+              <li>Advanced analytics</li>
+              <li>99.9% SLA</li>
+            </ul>
+            <a href="#" class="btn-primary plan-cta">Start Pro trial</a>
+          </article>
+
+          <article class="pricing-card" data-tier="enterprise" role="listitem" aria-label="Enterprise plan">
+            <div class="plan-header">
+              <span class="plan-name">Enterprise</span>
+            </div>
+            <div class="plan-price-wrap">
+              <span class="plan-currency-symbol" data-price-symbol></span>
+              <span class="plan-price" data-price-value data-tier="enterprise">9999</span>
+              <span class="plan-period">/mo</span>
+            </div>
+            <p class="plan-desc">For organizations demanding custom SLAs, dedicated infrastructure, and white-glove support.</p>
+            <ul class="plan-features" aria-label="Enterprise plan features">
+              <li>Custom pipelines</li>
+              <li>Unlimited events</li>
+              <li>All 300+ connectors</li>
+              <li>Dedicated Slack channel</li>
+              <li>Advanced analytics + lineage</li>
+              <li>99.97% SLA + DR</li>
+            </ul>
+            <a href="#" class="btn-outline plan-cta">Contact sales</a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section id="faq" class="faq-section" aria-labelledby="faq-heading">
+      <div class="container">
+        <header class="section-header">
+          <p class="section-eyebrow">FAQ</p>
+          <h2 id="faq-heading" class="section-heading">Questions answered.</h2>
+        </header>
+
+        <div class="faq-grid">
+          <div class="faq-item">
+            <button class="faq-trigger" aria-expanded="false" aria-controls="faq-1">
+              How does the annual discount apply?
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="18" height="18" class="faq-chevron">
+                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m19.5 8.25l-7.5 7.5l-7.5-7.5"/>
+              </svg>
+            </button>
+            <div class="faq-panel" id="faq-1" hidden>
+              <p>Annual plans get a flat 20% discount applied to all tiers. You're billed once per year. If you upgrade mid-year, we prorate the remaining months at the new tier's rate.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-trigger" aria-expanded="false" aria-controls="faq-2">
+              Can I change my currency after signup?
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="18" height="18" class="faq-chevron">
+                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m19.5 8.25l-7.5 7.5l-7.5-7.5"/>
+              </svg>
+            </button>
+            <div class="faq-panel" id="faq-2" hidden>
+              <p>Yes, you can change your billing currency at any time from your account settings. Changes take effect on the next billing cycle.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-trigger" aria-expanded="false" aria-controls="faq-3">
+              What happens when I exceed event limits?
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="18" height="18" class="faq-chevron">
+                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m19.5 8.25l-7.5 7.5l-7.5-7.5"/>
+              </svg>
+            </button>
+            <div class="faq-panel" id="faq-3" hidden>
+              <p>We never drop events. You'll receive an alert at 80% usage, and any overage is billed at a fair per-million-event rate at the end of the month.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-trigger" aria-expanded="false" aria-controls="faq-4">
+              Is there a self-hosted option?
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="18" height="18" class="faq-chevron">
+                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m19.5 8.25l-7.5 7.5l-7.5-7.5"/>
+              </svg>
+            </button>
+            <div class="faq-panel" id="faq-4" hidden>
+              <p>Enterprise plans include a self-hosted deployment option with full Kubernetes manifests, Terraform modules, and dedicated migration support from our team.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CTA BANNER ===== -->
+    <section class="cta-banner" aria-labelledby="cta-heading">
+      <div class="container">
+        <div class="cta-inner">
+          <div class="cta-content">
+            <h2 id="cta-heading" class="cta-heading">Ready to automate everything?</h2>
+            <p class="cta-sub">Join 4,000+ engineering teams already running on NexaFlow.</p>
+          </div>
+          <div class="cta-actions">
+            <a href="#pricing" class="btn-primary btn-large">Start for free</a>
+            <a href="#" class="btn-ghost-light btn-large">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="18" height="18">
+                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"/>
+              </svg>
+              Request a demo
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="nav-logo footer-logo" aria-label="NexaFlow AI">
+            <svg class="nav-logo-icon" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path fill="currentColor" d="M8.372 1.349a.75.75 0 0 0-.744 0l-4.81 2.748L8 7.131l5.182-3.034zM14 5.357L8.75 8.43v6.005l4.872-2.784A.75.75 0 0 0 14 11zm-6.75 9.078V8.43L2 5.357V11c0 .27.144.518.378.651z"/>
+            </svg>
+            <span class="nav-logo-text">NexaFlow</span>
+          </a>
+          <p class="footer-tagline">Intelligent data automation for modern engineering teams.</p>
+        </div>
+
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <div class="footer-col">
+            <h3 class="footer-col-title">Product</h3>
+            <ul role="list">
+              <li><a href="#features">Features</a></li>
+              <li><a href="#pricing">Pricing</a></li>
+              <li><a href="#">Changelog</a></li>
+              <li><a href="#">Roadmap</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h3 class="footer-col-title">Developers</h3>
+            <ul role="list">
+              <li><a href="#">Documentation</a></li>
+              <li><a href="#">API Reference</a></li>
+              <li><a href="#">Status</a></li>
+              <li><a href="#">GitHub</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h3 class="footer-col-title">Company</h3>
+            <ul role="list">
+              <li><a href="#">About</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Careers</a></li>
+              <li><a href="#">Privacy</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 NexaFlow AI, Inc. All rights reserved.</p>
+        <p class="footer-legal">Built for speed. Designed for reliability.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+/**
+ * NexaFlow AI — App Logic
+ * - Feature 1: Multi-dimensional pricing matrix (INR/USD/EUR × monthly/annual)
+ * - Feature 2: Bento ↔ Accordion with context-lock on resize
+ * - Loader, nav, scroll reveals, FAQ, isolated state updates
+ */
+
+(() => {
+  'use strict';
+
+  /* =============================================================
+     PRICING MATRIX — multi-dimensional config object
+     base rates (monthly) × currency tariff × annual multiplier
+  ============================================================= */
+  const PRICING_MATRIX = {
+    // tiers: base USD monthly rate (cents to avoid floats)
+    tiers: {
+      starter:    { baseUSDMonthly: 0 },
+      pro:        { baseUSDMonthly: 49 },
+      enterprise: { baseUSDMonthly: 149 },
+    },
+
+    // currency config: symbol, conversion rate from USD, regional tariff multiplier
+    currencies: {
+      INR: { symbol: '₹', rate: 83.5,  tariff: 1.18, fractionDigits: 0 },
+      USD: { symbol: '$', rate: 1,      tariff: 1.00, fractionDigits: 0 },
+      EUR: { symbol: '€', rate: 0.92,   tariff: 1.05, fractionDigits: 0 },
+    },
+
+    // billing multipliers
+    billing: {
+      monthly: 1,
+      annual:  0.8, // 20% discount
+    },
+  };
+
+  /**
+   * Compute the final price for a tier + currency + billing cycle.
+   * Returns { symbol, amount } — no hardcoded UI values.
+   */
+  function computePrice(tier, currency, cycle) {
+    const { baseUSDMonthly } = PRICING_MATRIX.tiers[tier];
+    const { symbol, rate, tariff, fractionDigits } = PRICING_MATRIX.currencies[currency];
+    const billingMult = PRICING_MATRIX.billing[cycle];
+
+    const finalAmount = baseUSDMonthly * rate * tariff * billingMult;
+    const formatted = finalAmount === 0 ? '0' : Math.round(finalAmount).toLocaleString('en-IN');
+
+    return { symbol, amount: formatted };
+  }
+
+  /* =============================================================
+     STATE — strictly isolated, no object references to parent DOM
+  ============================================================= */
+  const state = {
+    currency: 'INR',
+    cycle:    'monthly',
+  };
+
+  /* =============================================================
+     PRICE UPDATER — updates ONLY targeted text nodes, zero reflow
+  ============================================================= */
+  function updatePriceNodes() {
+    // We write directly to text nodes — no className toggling on parent
+    const symbolNodes = document.querySelectorAll('[data-price-symbol]');
+    const valueNodes  = document.querySelectorAll('[data-price-value]');
+
+    symbolNodes.forEach(node => {
+      const currData = PRICING_MATRIX.currencies[state.currency];
+      // Use a text node to avoid re-parsing innerHTML
+      if (node.firstChild && node.firstChild.nodeType === Node.TEXT_NODE) {
+        node.firstChild.data = currData.symbol;
+      } else {
+        node.textContent = currData.symbol;
+      }
+    });
+
+    valueNodes.forEach(node => {
+      const tier = node.dataset.tier;
+      if (!tier) return;
+      const { amount } = computePrice(tier, state.currency, state.cycle);
+      if (node.firstChild && node.firstChild.nodeType === Node.TEXT_NODE) {
+        node.firstChild.data = amount;
+      } else {
+        node.textContent = amount;
+      }
+    });
+  }
+
+  /* =============================================================
+     FEATURE 1: BILLING TOGGLE
+  ============================================================= */
+  function initBillingToggle() {
+    const buttons = document.querySelectorAll('.toggle-btn');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const cycle = btn.dataset.cycle;
+        if (cycle === state.cycle) return;
+        state.cycle = cycle;
+
+        buttons.forEach(b => {
+          b.classList.toggle('active', b.dataset.cycle === cycle);
+          b.setAttribute('aria-pressed', b.dataset.cycle === cycle ? 'true' : 'false');
+        });
+
+        updatePriceNodes(); // isolated — only price text nodes change
+      });
+    });
+  }
+
+  /* =============================================================
+     FEATURE 1: CURRENCY DROPDOWN
+  ============================================================= */
+  function initCurrencyDropdown() {
+    const trigger = document.getElementById('currency-trigger');
+    const menu    = document.getElementById('currency-menu');
+    const flagEl  = document.getElementById('currency-flag');
+    const labelEl = document.getElementById('currency-label');
+    if (!trigger || !menu) return;
+
+    function openMenu() {
+      menu.hidden = false;
+      trigger.setAttribute('aria-expanded', 'true');
+      // Focus first item
+      const first = menu.querySelector('li');
+      if (first) first.focus();
+    }
+
+    function closeMenu() {
+      menu.hidden = true;
+      trigger.setAttribute('aria-expanded', 'false');
+    }
+
+    trigger.addEventListener('click', e => {
+      e.stopPropagation();
+      menu.hidden ? openMenu() : closeMenu();
+    });
+
+    menu.querySelectorAll('li').forEach(li => {
+      li.addEventListener('click', () => selectCurrency(li));
+      li.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectCurrency(li); }
+        if (e.key === 'Escape') { closeMenu(); trigger.focus(); }
+        if (e.key === 'ArrowDown') { e.preventDefault(); (li.nextElementSibling || li.parentElement.firstElementChild).focus(); }
+        if (e.key === 'ArrowUp')   { e.preventDefault(); (li.previousElementSibling || li.parentElement.lastElementChild).focus(); }
+      });
+    });
+
+    document.addEventListener('click', e => {
+      if (!menu.hidden && !menu.contains(e.target) && e.target !== trigger) closeMenu();
+    });
+
+    function selectCurrency(li) {
+      const currency = li.dataset.currency;
+      const flag     = li.dataset.flag;
+      if (currency === state.currency) { closeMenu(); return; }
+
+      state.currency = currency;
+
+      // Update trigger display
+      flagEl.textContent  = flag;
+      labelEl.textContent = currency;
+
+      // Update selected state
+      menu.querySelectorAll('li').forEach(item => {
+        item.setAttribute('aria-selected', item.dataset.currency === currency ? 'true' : 'false');
+      });
+
+      closeMenu();
+      updatePriceNodes(); // isolated — only price text nodes change
+    }
+  }
+
+  /* =============================================================
+     FEATURE 2: BENTO GRID — track active index on hover
+  ============================================================= */
+  let bentoActiveIndex = -1;
+
+  function initBentoGrid() {
+    const cards = document.querySelectorAll('.bento-card');
+    cards.forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        cards.forEach(c => c.classList.remove('active'));
+        card.classList.add('active');
+        bentoActiveIndex = parseInt(card.dataset.index, 10);
+      });
+      card.addEventListener('mouseleave', () => {
+        card.classList.remove('active');
+        bentoActiveIndex = -1;
+      });
+      card.addEventListener('focus', () => {
+        bentoActiveIndex = parseInt(card.dataset.index, 10);
+      });
+      card.addEventListener('blur', () => {
+        bentoActiveIndex = -1;
+      });
+    });
+  }
+
+  /* =============================================================
+     FEATURE 2: ACCORDION — zero external dependencies
+  ============================================================= */
+  let accordionActiveIndex = -1;
+
+  function openAccordionItem(index) {
+    const items = document.querySelectorAll('.accordion-item');
+    items.forEach((item, i) => {
+      const btn   = item.querySelector('.accordion-trigger');
+      const panel = item.querySelector('.accordion-panel');
+      const isTarget = i === index;
+
+      if (isTarget) {
+        btn.setAttribute('aria-expanded', 'true');
+        panel.hidden = false;
+        item.classList.add('active');
+        accordionActiveIndex = index;
+      } else {
+        btn.setAttribute('aria-expanded', 'false');
+        panel.hidden = true;
+        item.classList.remove('active');
+      }
+    });
+  }
+
+  function closeAllAccordion() {
+    document.querySelectorAll('.accordion-item').forEach(item => {
+      item.querySelector('.accordion-trigger').setAttribute('aria-expanded', 'false');
+      item.querySelector('.accordion-panel').hidden = true;
+      item.classList.remove('active');
+    });
+    accordionActiveIndex = -1;
+  }
+
+  function initAccordion() {
+    document.querySelectorAll('.accordion-trigger').forEach((btn, i) => {
+      btn.addEventListener('click', () => {
+        const isOpen = btn.getAttribute('aria-expanded') === 'true';
+        if (isOpen) {
+          closeAllAccordion();
+        } else {
+          openAccordionItem(i);
+        }
+      });
+    });
+  }
+
+  /* =============================================================
+     CONTEXT LOCK — transfer active bento index to accordion on resize
+  ============================================================= */
+  const MOBILE_BP = 768;
+  let wasMobile = window.innerWidth <= MOBILE_BP;
+
+  function handleResize() {
+    const isMobile = window.innerWidth <= MOBILE_BP;
+
+    if (wasMobile === isMobile) return; // no breakpoint crossing
+    wasMobile = isMobile;
+
+    if (isMobile) {
+      // Desktop → Mobile: transfer bento hover index to accordion
+      if (bentoActiveIndex >= 0) {
+        // Slight rAF to ensure layout has switched
+        requestAnimationFrame(() => {
+          openAccordionItem(bentoActiveIndex);
+          // Scroll into view smoothly
+          const panel = document.querySelectorAll('.accordion-item')[bentoActiveIndex];
+          if (panel) panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+      }
+    } else {
+      // Mobile → Desktop: restore bento highlight from accordion state
+      if (accordionActiveIndex >= 0) {
+        bentoActiveIndex = accordionActiveIndex;
+        requestAnimationFrame(() => {
+          const cards = document.querySelectorAll('.bento-card');
+          cards.forEach(c => c.classList.remove('active'));
+          const target = document.querySelector(`.bento-card[data-index="${bentoActiveIndex}"]`);
+          if (target) target.classList.add('active');
+        });
+      }
+    }
+  }
+
+  // Debounce resize for performance
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(handleResize, 50);
+  });
+
+  /* =============================================================
+     FAQ ACCORDION
+  ============================================================= */
+  function initFAQ() {
+    document.querySelectorAll('.faq-trigger').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        const panelId  = btn.getAttribute('aria-controls');
+        const panel    = document.getElementById(panelId);
+
+        // Close all
+        document.querySelectorAll('.faq-trigger').forEach(b => {
+          b.setAttribute('aria-expanded', 'false');
+          const p = document.getElementById(b.getAttribute('aria-controls'));
+          if (p) p.hidden = true;
+        });
+
+        // Toggle clicked
+        if (!expanded) {
+          btn.setAttribute('aria-expanded', 'true');
+          if (panel) panel.hidden = false;
+        }
+      });
+    });
+  }
+
+  /* =============================================================
+     MOBILE NAV TOGGLE
+  ============================================================= */
+  function initMobileNav() {
+    const toggle = document.getElementById('nav-toggle');
+    const menu   = document.getElementById('mobile-menu');
+    if (!toggle || !menu) return;
+
+    toggle.addEventListener('click', () => {
+      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!isOpen));
+      menu.hidden = isOpen;
+    });
+
+    // Close on link click
+    menu.querySelectorAll('.mobile-nav-link, .mobile-cta').forEach(link => {
+      link.addEventListener('click', () => {
+        toggle.setAttribute('aria-expanded', 'false');
+        menu.hidden = true;
+      });
+    });
+  }
+
+  /* =============================================================
+     SCROLL REVEAL — IntersectionObserver, no library
+  ============================================================= */
+  function initScrollReveal() {
+    const revealEls = document.querySelectorAll(
+      '.bento-card, .testimonial-card, .pricing-card, .accordion-item, .faq-item, .section-header'
+    );
+
+    revealEls.forEach(el => el.classList.add('reveal'));
+
+    if (!('IntersectionObserver' in window)) {
+      revealEls.forEach(el => el.classList.add('visible'));
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    revealEls.forEach(el => observer.observe(el));
+  }
+
+  /* =============================================================
+     LOADER — complete within 500ms
+  ============================================================= */
+  function initLoader() {
+    const loader = document.getElementById('page-loader');
+    if (!loader) return;
+
+    // Hide loader after animation completes (420ms fill + small buffer)
+    setTimeout(() => {
+      loader.classList.add('hidden');
+      loader.addEventListener('transitionend', () => loader.remove(), { once: true });
+    }, 480);
+  }
+
+  /* =============================================================
+     INIT
+  ============================================================= */
+  function init() {
+    initLoader();
+    initBillingToggle();
+    initCurrencyDropdown();
+    initBentoGrid();
+    initAccordion();
+    initFAQ();
+    initMobileNav();
+    initScrollReveal();
+
+    // Set initial prices
+    updatePriceNodes();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+})();
+
+</script>
+</body>
+</html>
